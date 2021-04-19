@@ -25,3 +25,11 @@
     "typings"
   ]
 }
+// to diable angular from checking typescripts version use
+// {
+//   // ...
+//   "angularCompilerOptions": {
+//     // ...
+//     "disableTypeScriptVersionCheck": true
+//   }
+// }

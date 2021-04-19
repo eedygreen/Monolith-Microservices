@@ -1,4 +1,4 @@
-import { props } from 'bluebird';
+//import { props } from 'bluebird';
 
 export const config = {
   'username': process.env.POSTGRES_USERNAME,
