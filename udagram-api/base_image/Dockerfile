@@ -67,5 +67,5 @@ RUN set -ex \
   # smoke test
   && yarn --version
 
-# installation completed
+# Node Base Image: installation completed
 CMD ["node"]
