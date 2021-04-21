@@ -1,4 +1,4 @@
 FROM nginx:alpine
 
-# nginx reverse-proxy
+# nginx reverse-proxy file
 COPY nginx.conf /etc/nginx/nginx.conf
