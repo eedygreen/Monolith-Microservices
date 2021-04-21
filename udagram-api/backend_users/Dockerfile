@@ -1,4 +1,4 @@
-FROM eedy/nodebaseimage
+FROM eedy/nodebaseimage:v1
 
 WORKDIR /usr/src/app
 
