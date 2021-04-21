@@ -15,7 +15,7 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t nodebaseimage /udagram-api/base_image/
+  - docker build -t nodebaseimage udagram-api/base_image/
   - docker tag nodebaseimage eedy/nodebaseimage:v1
 
 after_success:
