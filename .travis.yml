@@ -12,12 +12,35 @@ install:
 # Scripts to be run such as tests
 before_script:
   - echo "no tests"
+jobs:
+  include:
+    - stage: build base image
+      script:
+        - docker --version # print the version for logging
+        - docker build -t nodebaseimage udagram-api/base_image/
+        - docker tag nodebaseimage eedy/nodebaseimage:v1
 
-script:
-  - docker --version # print the version for logging
-  - docker build -t nodebaseimage udagram-api/base_image/
-  - docker tag nodebaseimage eedy/nodebaseimage:v1
+      after_success:
+        - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
+        - docker push eedy/nodebaseimage:v1
 
-after_success:
-  - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
-  - docker push eedy/nodebaseimage
+    - stage: build backend-api
+      script:
+        - docker build -t backendapiusersimage udagram-api/backend_users/
+        - docker build -t backendapifeedimage udagram-api/backend_feed/
+        - docker tag backendapifeedimage eedy/backendapifeedimage:v1
+        - docker tag backendapiusersimage eedy/backendapiusersimage:v1
+
+      after_success:
+        - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
+        - docker push eedy/backendapifeedimage:v1
+        - docker push eedy/backendapiusersimage:v1
+jobs:
+  exclude:
+    - stage: build reverse-proxy
+      script:
+        - docker build -t reverseproxy reverse_proxy
+        - docker tag reverseproxy eedy/reverseproxy:v1
+      after_success:
+        - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
+        - docker push eedy/reverseproxy:v1
