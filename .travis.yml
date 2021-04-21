@@ -1,19 +1,17 @@
-language: node_js
-node_js:
-  - 13
-
-services:
-  - docker
-
-# Pre-testing installs
-install:
-  - echo "nothing needs to be installed"
-
-# Scripts to be run such as tests
-before_script:
-  - echo "no tests"
 jobs:
-  include:
+include:
+  - language: node_js
+    node_js:
+      - 13
+    services:
+      - docker
+    # Pre-testing installs
+    install:
+      - echo "nothing needs to be installed"
+
+    # Scripts to be run such as tests
+    before_script:
+      - echo "no tests"
     - stage: build base image
       script:
         - docker --version # print the version for logging
@@ -33,8 +31,10 @@ jobs:
         - echo "$DOCKERUB_TOKEN" | docker login --username "$DOCKER_NAME" --password-stdin
         - docker push eedy/backendapifeedimage:v1
         - docker push eedy/backendapiusersimage:v1
-  include:
-    language: bash 
+  # build reverse proxy
+  - language: bash
+    services:
+      - docker 
       - stage: build reverse-proxy
         script:
           - docker build -t reverseproxy reverse_proxy
