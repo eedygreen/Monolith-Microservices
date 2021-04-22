@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-backend-users-api
+  labels:
+    run: udagram-backend-users-api
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: udagram-backend-users-api
