@@ -36,9 +36,9 @@ jobs:
 
     - stage: build reverse-proxy
       language: bash 
-        script:
-          - docker build -t reverseproxy reverse_proxy/
-          - docker tag reverseproxy eedy/reverseproxy:v1
-        after_success:
-          - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
-          - docker push eedy/reverseproxy:v1
+      script:
+        - docker build -t reverseproxy reverse_proxy/
+        - docker tag reverseproxy eedy/reverseproxy:v1
+      after_success:
+        - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
+        - docker push eedy/reverseproxy:v1
