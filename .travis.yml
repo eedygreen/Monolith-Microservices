@@ -42,3 +42,12 @@ jobs:
       after_success:
         - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
         - docker push eedy/reverseproxy:v1
+    
+    - stage: build frontend image
+      language: node-13-alpine
+      script:
+        - docker build -t frontend udagram-frontend/
+        - docker tag frontend eedy/frontend:latest
+      after_success:
+        - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
+        - docker push eedy/frontend:latest 
