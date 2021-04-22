@@ -14,14 +14,14 @@ before_script:
   - echo "no tests"
 jobs:
   include:
-    - stage: build base image
-      script:
-        - docker --version # print the version for logging
-        - docker build -t nodebaseimage udagram-api/base_image/
-        - docker tag nodebaseimage eedy/nodebaseimage:v1
-      after_success:
-        - echo "$DOCKERUB_TOKEN" | docker login --username "$DOCKER_NAME" --password-stdin
-        - docker push eedy/nodebaseimage:v1
+    # - stage: build base image
+    #   script:
+    #     - docker --version # print the version for logging
+    #     - docker build -t nodebaseimage udagram-api/base_image/
+    #     - docker tag nodebaseimage eedy/nodebaseimage:v1
+    #   after_success:
+    #     - echo "$DOCKERUB_TOKEN" | docker login --username "$DOCKER_NAME" --password-stdin
+    #     - docker push eedy/nodebaseimage:v1
 
     - stage: build backend-api
       script:

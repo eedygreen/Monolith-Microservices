@@ -1,4 +1,4 @@
-FROM eedy/nodebaseimage:v1
+FROM node:13
 
 WORKDIR /usr/src/app
 
@@ -12,8 +12,10 @@ RUN npm install
 # Copy app source
 COPY . .
 
+RUN npm run tsc
+
 # Bind the port that the image will run on
 EXPOSE 8080
 
 # Define the Docker image's behavior at runtime
-CMD ["node", "server.js"]
+CMD ["node", "run", "dev"]
