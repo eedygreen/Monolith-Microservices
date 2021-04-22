@@ -1,4 +1,4 @@
-# Udagram Image Filtering Application <image align="right" src=[![Build Status](https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev)](https://travis-ci.com/eedygreen/Monlith-Microservices)>
+# Udagram Image Filtering Application <img align="right" src=[![Build Status](https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev)](https://travis-ci.com/eedygreen/Monlith-Microservices)>
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
