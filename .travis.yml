@@ -35,7 +35,7 @@ jobs:
         - docker push eedy/backendapiusersimage:v1
 
     - stage: build reverse-proxy
-      language: bash 
+      #language: bash 
         script:
           - docker build -t reverseproxy reverse_proxy/
           - docker tag reverseproxy eedy/reverseproxy:v1
