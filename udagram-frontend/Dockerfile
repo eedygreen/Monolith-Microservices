@@ -1,20 +1,18 @@
 FROM node:13-alpine as build
 
-RUN mkdir -p /usr/src/app
-
 WORKDIR /usr/src/app
 
 # package.json and package-lock.json
-COPY package*.json /usr/src/app/
+COPY package*.json ./
 
 # Install ionic framework
-RUN npm install -g ionic
+RUN npm install -g ionic@5
 
 # Install app dependencies
-RUN npm install .
+RUN npm install
 
 # Bundle app source
-COPY . /usr/src/app
+COPY . .
 
 # Build the App
 RUN ionic build
