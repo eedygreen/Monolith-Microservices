@@ -1,16 +1,17 @@
 FROM node:13
 
+RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
-# Install app dependencies by copying
-# package.json and package-lock.json
-COPY package*.json ./
+# Install app dependencies by copying package.json and package-lock.json
+COPY package*.json /usr/src/app/
 
 # Install dependencies
 RUN npm install
 
 # Copy app source
-COPY . .
+COPY . /usr/src/app
 
 RUN npm run tsc
 
