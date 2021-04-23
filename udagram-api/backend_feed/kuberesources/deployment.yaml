@@ -19,3 +19,11 @@ spec:
         image: eedy/backendapifeedimage:v1
         ports:
         - containerPort: 8080
+        volumeMounts:
+          - name: environ
+            mountPath: "/etc/environ"
+            readOnly: true
+      volumes:
+        - name: environ
+          configMap:
+            name: env-variable
