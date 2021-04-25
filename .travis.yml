@@ -25,8 +25,8 @@ jobs:
 
     - stage: build backend-api
       script:
-        - docker build -f udagram-api/backend_users/Dockerfile -t backendapiusersimage
-        - docker build -f udagram-api/backend_feed/Dockerfile -t backendapifeedimage
+        - docker build -t backendapiusersimage udagram-api/backend_users/
+        - docker build -t backendapifeedimage udagram-api/backend_feed/
         - docker tag backendapifeedimage eedy/backendapifeedimage:v1
         - docker tag backendapiusersimage eedy/backendapiusersimage:v1
       after_success:
@@ -37,7 +37,7 @@ jobs:
     - stage: build reverse-proxy
       language: bash 
       script:
-        - docker build -f reverse_proxy/Dockerfile -t reverseproxy
+        - docker build -t reverseproxy reverse_proxy/
         - docker tag reverseproxy eedy/reverseproxy:v1
       after_success:
         - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
@@ -45,7 +45,7 @@ jobs:
     
     - stage: build frontend image
       script:
-        - docker build -f udagram-frontend/Dockerfile -t frontend
+        - docker build -t frontend udagram-frontend/
         - docker tag frontend eedy/frontend:latest
       after_success:
         - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
