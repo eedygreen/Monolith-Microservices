@@ -11,7 +11,6 @@
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm www/server.js"
-
   },
   "repository": {
     "type": "git",
