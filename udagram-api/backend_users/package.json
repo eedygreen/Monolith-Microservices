@@ -4,24 +4,24 @@
   "description": "Refactoring Monolith to Miroservices",
   "main": "src/server.js",
   "scripts": {
-    "tsc": "tsc",
-    "dev": "ts-node-dev ./src/server.ts",
-    "prod": "tsc && node ./www/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm www/server.js"
+    "tsc": "tsc",
+    "dev": "ts-node-dev src/server.ts",
+    "prod": "tsc && node ./www/server.js",
+    "start": "node www/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eedygreen/Full-Stack-Apps-in-AWS.git"
+    "url": "git+https://github.com/eedygreen/Monolith-Microservices.git"
   },
-  "homepage": "https://github.com/eedygreen/Full-Stack-Apps-in-AWS.git#readme",
+  "homepage": "https://github.com/eedygreen/Monolith-Microservices.git#readme",
   "keywords": [],
   "author": "Eedy Green",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eedygreen/Full-Stack-Apps-in-AWS/issues"
+    "url": "https://github.com/eedygreen/Monolith-Microservices/issues"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
