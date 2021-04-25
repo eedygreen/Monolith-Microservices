@@ -1,31 +1,21 @@
-FROM node:13-alpine as build
+## Build
+FROM beevelop/ionic:latest AS ionic
 
+# Create app directory
 WORKDIR /usr/src/app
 
-# package.json and package-lock.json
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
 
-# Install ionic framework
-RUN npm install -g ionic@5
-
-# Install app dependencies
-RUN npm install
-
+#install dependecies
+RUN npm ci
 # Bundle app source
 COPY . .
 
-# Build the App
 RUN ionic build
 
-# using nginx server
-# FROM nginx:alpine
-
-# Remove previous nginx files
-# RUN rm -rf /usr/share/nginx/html/*
-
-# Add the biuld to nginx path
-# COPY --from=build /usr/src/app/www /usr/share/nginx/html/
-
-EXPOSE 8080
-
-CMD ["ng", "start"]
+## Run 
+FROM nginx:alpine
+#COPY www /usr/share/nginx/html
+COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html

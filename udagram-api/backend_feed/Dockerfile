@@ -9,16 +9,13 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Copy app source
 COPY . .
-
-# build app
-RUN npm run tsc
 
 # Expose port 8080 for the api connection
 EXPOSE 8080
 
 # Define the Docker image's behavior at runtime
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "prod" ]
