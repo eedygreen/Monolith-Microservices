@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Udagram Image Filtering Application [![Build Status](https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev)](https://travis-ci.com/eedygreen/Monlith-Microservices)
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
@@ -72,3 +73,9 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     npm audit fix
     ```
 5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+=======
+# Monlith-Microservices
+
+
+[![Build Status](https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev)](https://travis-ci.com/eedygreen/Monlith-Microservices)
+>>>>>>> f2682405f457fe413b9abcdc64720822186c1531
