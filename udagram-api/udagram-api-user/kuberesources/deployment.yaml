@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-backend-users-api
-        image: eedy/backendapiusersimage:v1
+        image: eedy/backendapiusersimage:latest
         ports:
         - containerPort: 8080
         volumeMounts:

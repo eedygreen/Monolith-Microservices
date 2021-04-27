@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-frontend-api
+  labels:
+    app: udagram-frontend-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-frontend-api
+  template:
+    metadata:
+      labels:
+        app: udagram-frontend-api
+    spec:
+      containers:
+      - name: udagram-frontend-api
+        image: eedy/frontend:latest
+        ports:
+        - containerPort: 8080

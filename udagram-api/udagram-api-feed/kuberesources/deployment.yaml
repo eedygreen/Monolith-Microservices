@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-backend-feed-api
-        image: eedy/backendapifeedimage:v1
+        image: eedy/backendapifeedimage:latest
         ports:
         - containerPort: 8080
         volumeMounts:
