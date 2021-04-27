@@ -2,19 +2,17 @@
 FROM node:12
 
 # Create app directory
-WORKDIR /usr/app
+WORKDIR /usr/src/app
 
 # Install app dependencies by copying
 # package.json and package-lock.json
-COPY package.json /usr/app/
+COPY package.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm i
 
 # Copy app source
-COPY /src /usr/app
-
-RUN npm run build
+COPY . .
 
 # Expose port 8080 for the api connection
 EXPOSE 8080
