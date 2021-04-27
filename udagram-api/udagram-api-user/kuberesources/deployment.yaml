@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-backend-users-api
+  labels:
+    app: udagram-backend-users-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-backend-users-api
+  template:
+    metadata:
+      labels:
+        app: udagram-backend-users-api
+    spec:
+      containers:
+      - name: udagram-backend-users-api
+        image: eedy/backendapiusersimage:v1
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: environ
+          mountPath: "/etc/environ"
+          readOnly: true
+      volumes:
+      - name: environ
+        configMap:
+          name: env-variable

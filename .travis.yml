@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 13
+  - 12
 
 services:
   - docker
@@ -25,23 +25,23 @@ jobs:
 
     - stage: build backend-api
       script:
-        - docker build -t backendapiusersimage udagram-api/backend_users/
-        - docker build -t backendapifeedimage udagram-api/backend_feed/
-        - docker tag backendapifeedimage eedy/backendapifeedimage:v1
-        - docker tag backendapiusersimage eedy/backendapiusersimage:v1
+        - docker build -t backendapiusersimage udagram-api/udagram-api-user/
+        - docker build -t backendapifeedimage udagram-api/udagram-api-feed/
+        - docker tag backendapifeedimage eedy/backendapifeedimage:latest
+        - docker tag backendapiusersimage eedy/backendapiusersimage:latest
       after_success:
         - echo "$DOCKERUB_TOKEN" | docker login --username "$DOCKER_NAME" --password-stdin
-        - docker push eedy/backendapifeedimage:v1
-        - docker push eedy/backendapiusersimage:v1
+        - docker push eedy/backendapifeedimage:latest
+        - docker push eedy/backendapiusersimage:latest
 
     - stage: build reverse-proxy
       language: bash 
       script:
         - docker build -t reverseproxy reverse_proxy/
-        - docker tag reverseproxy eedy/reverseproxy:v1
+        - docker tag reverseproxy eedy/reverseproxy
       after_success:
         - echo "$DOCKERUB_TOKEN" | docker login -u "$DOCKER_NAME" --password-stdin
-        - docker push eedy/reverseproxy:v1
+        - docker push eedy/reverseproxy:latest
     
     - stage: build frontend image
       script:
