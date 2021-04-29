@@ -1,81 +1,213 @@
-<<<<<<< HEAD
-# Udagram Image Filtering Application [![Build Status](https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev)](https://travis-ci.com/eedygreen/Monlith-Microservices)
+# README.md
+
+# REFACTORING OF MONOLITH TO MICROSERVICES  ****
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
-The project is split into two parts:
+### The project is split into two parts:
+
 1. Frontend - Angular web application built with Ionic Framework
 2. Backend RESTful API - Node-Express application
 
-## Getting Started
-> _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
+## Container and Microservices
 
-### Prerequisite
-1. The depends on the Node Package Manager (NPM). You will need to download and install Node from [https://nodejs.com/en/download](https://nodejs.org/en/download/). This will allow you to be able to run `npm` commands.
-2. Environment variables will need to be set. These environment variables include database connection details that should not be hard-coded into the application code.
-#### Environment Script
-A file named `set_env.sh` has been prepared as an optional tool to help you configure these variables on your local development environment.
- 
-We do _not_ want your credentials to be stored in git. After pulling this `starter` project, run the following command to tell git to stop tracking the script in git but keep it stored locally. This way, you can use the script for your convenience and reduce risk of exposing your credentials.
-`git rm --cached set_env.sh`
+### Divide an application into microservices
 
-Afterwards, we can prevent the file from being included in your solution by adding the file to our `.gitignore` file.
+Refactoring the Udagram Backend API
 
-### Database
-Create a PostgreSQL database either locally or on AWS RDS. Set the config values for environment variables prefixed with `POSTGRES_` in `set_env.sh`.
+- Backend-api [here](https://github.com/eedygreen/Monlith-Microservices/tree/dev/udagram-api)
+    - Backend-feed [here](https://github.com/eedygreen/Monlith-Microservices/tree/dev/udagram-api/backend_feed) - /feed
+    - Backend-users [here](https://github.com/eedygreen/Monlith-Microservices/tree/dev/udagram-api/backend_users) - /users
 
-### S3
-Create an AWS S3 bucket. Set the config values for environment variables prefixed with `AWS_` in `set_env.sh`.
+The Backend API was separeated into two microservices API as independent services.
 
-### Backend API
-* To download all the package dependencies, run the command from the directory `udagram-api/`:
-    ```bash
-    npm install .
-    ```
-* To run the application locally, run:
-    ```bash
-    npm run dev
-    ```
-* You can visit `http://localhost:8080/api/v0/feed` in your web browser to verify that the application is running. You should see a JSON payload. Feel free to play around with Postman to test the API's.
+### Build and run a container image using Docker
 
-### Frontend App
-* To download all the package dependencies, run the command from the directory `udagram-frontend/`:
-    ```bash
-    npm install .
-    ```
-* Install Ionic Framework's Command Line tools for us to build and run the application:
-    ```bash
-    npm install -g ionic
-    ```
-* Prepare your application by compiling them into static files.
-    ```bash
-    ionic build
-    ```
-* Run the application locally using files created from the `ionic build` command.
-    ```bash
-    ionic serve
-    ```
-* You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
+The project includes Dockerfiles to successfully create Docker images for /feed, /user backends, project frontend, and reverse proxy.
 
-## Tips
-1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
-2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
-3. It's useful to "lint" your code so that changes in the codebase adhere to a coding standard. This helps alleviate issues when developers use different styles of coding. `eslint` has been set up for TypeScript in the codebase for you. To lint your code, run the following:
-    ```bash
-    npx eslint --ext .js,.ts src/
-    ```
-    To have your code fixed automatically, run
-    ```bash
-    npx eslint --ext .js,.ts src/ --fix
-    ```
-4. Over time, our code will become outdated and inevitably run into security vulnerabilities. To address them, you can run:
-    ```bash
-    npm audit fix
-    ```
-5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
-=======
-# Monlith-Microservices
+### Dockerfiles
 
+- Backend Dockerfile
+    - Feed [here](https://github.com/eedygreen/Monlith-Microservices/blob/dev/udagram-api/backend_feed/Dockerfile)
+    - Users [here](https://github.com/eedygreen/Monlith-Microservices/blob/dev/udagram-api/backend_users/Dockerfile)
+- Reverse-Proxy Dockerfile [here](https://github.com/eedygreen/Monlith-Microservices/blob/dev/reverse_proxy/Dockerfile)
+- Frontend Dockerfile [here](https://github.com/eedygreen/Monlith-Microservices/blob/dev/udagram-frontend/Dockerfile)
+- Base Image [here](https://github.com/eedygreen/Monlith-Microservices/blob/dev/udagram-api/base_image/Dockerfile)
 
-[![Build Status](https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev)](https://travis-ci.com/eedygreen/Monlith-Microservices)
->>>>>>> f2682405f457fe413b9abcdc64720822186c1531
+### DockerHub Images
+
+- Backend Images
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/nodejs_base_image.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/nodejs_base_image.png)
+
+Fig 1.0: NodeJs Base Image
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_users_image.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_users_image.png)
+
+Fig 1.1: Backend Users Docker Image
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_feed_image.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_feed_image.png)
+
+Fig 1.2: Backend Feed Docker Image
+
+Reverse-Proxy
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/reverse_proxy_image.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/reverse_proxy_image.png)
+
+Fig 1.3: Reverse Proxy Docker Image
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/frontend_Docker_image.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/frontend_Docker_image.png)
+
+Fig 1.4: Frontend Docker Image
+
+<br>
+
+### Independent Releases and Deployments
+
+- Travis Config File
+
+With Travis CI, the independent releases and deployment was automated following DevOps and Security best practices.
+
+The configuration file .travis.yml can be found in the [Monolith-Microservices](https://github.com/eedygreen/Monlith-Microservices/blob/dev/.travis.yml) source repo.
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/travis_config_file.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/travis_config_file.png)
+
+Fig 1.5: Travis Configuration File
+
+<br>
+
+- Travis Interface - Deployment Status
+
+![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/Travis_CI_Interface.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/Travis_CI_Interface.png)
+
+Fig 1.6: Travis Interface
+
+<br>
+
+### Service Orchestration with Kubernetes
+
+- Create ConfigMap
+
+Config file or Config.yaml file
+
+```bash
+POSTGRES_HOST: host_address
+POSTGRES_DB: database_name
+AWS_BUCKET: bucket_name
+AWS_REGION: region
+AWS_PROFILE: profile_name
+JWT_SECRET: jwt_token
+URL: http:
+```
+
+```bash
+kubectl create -f confimap <name.yaml>
+
+or 
+
+kubectl create configmap <configmap_name> --from-file config
+```
+
+- Create Secret
+
+ Encode the Data
+
+```bash
+base64 login_credentials
+```
+
+Create the secret.yaml file
+
+```yaml
+kind: Secret
+metadata:
+  name: env-secret
+type: Opaque
+data:
+  POSTGRES_USERNAME: <your_base64_encoded_data>
+  POSTGRES_PASSWORD: <your_base64_encoded_data>
+```
+
+- **Deployed Microservices using a Kubernetes cluster on AWS**
+    - `kubectl get pods`
+
+    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/pods_running.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/pods_running.png)
+
+    Fig 2.1: Deployed Resources
+
+    <br>
+
+    - `kubectl describe services`
+
+    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/services_no_exposure1.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/services_no_exposure1.png)
+
+    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/services_no_exposure2.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/services_no_exposure2.png)
+
+    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/services_no_exposure3.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/services_no_exposure3.png)
+
+    Fig 2.2: Sensitive Data Not Expose
+
+    <br>
+
+    - **Reverse proxy to direct requests to the appropriate backend**
+
+    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/reverseproxy.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/reverseproxy.png)
+
+    Fig 2.3: Reverse Proxy
+
+    <br>
+
+    - S**caling and Self-healing for each service**
+        - Replicas Defined in Deployment.yaml
+
+        ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/replicas_deployment_manifest.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/replicas_deployment_manifest.png)
+
+        Fig 2.4: Deployment File with 2 Replicas
+
+        `kubectl apply -f deployment.yaml` 
+
+        `kubectl get pods`
+
+        ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/2_replicas.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/2_replicas.png)
+
+        Fig 2.5: Deployment Status
+
+        <br>
+
+        Note: The next steps depends on Metric Server
+
+        Installing metric server can be done in one of the following
+
+        1. [Kubernetes Metric Server](https://github.com/kubernetes-sigs/metrics-server#deployment) 
+
+        ```bash
+        kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+        ```
+
+        2. Helm charts
+
+        Note: Previous Metric Server on helm is deprecated, use the [prometheus adaptor](https://github.com/helm/charts/tree/master/stable/prometheus-adapter) instead.
+
+        ```bash
+        helm install --name my-release stable/prometheus-adapter
+        ```
+
+    - **Autoscaling with CPU Metrics**
+
+        `kubectl describe hpa backend-api`
+
+        ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/hpa_backend-api.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/hpa_backend-api.png)
+
+        Fig 2.6: Autoscaling with CPU Metrics
+
+        <br>
+
+        ### Debugging, Monitoring, and Logging
+
+        ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_metric.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_metric.png)
+
+        Fig 2.7: Debugging DB Connection Request
+
+        ### Problems
+
+        ### Solutions
