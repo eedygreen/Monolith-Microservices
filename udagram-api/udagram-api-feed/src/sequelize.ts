@@ -8,8 +8,6 @@ export const sequelize = new Sequelize({
   'database': config.database,
   'host': config.host,
 
-  dialect: 'postgres',
+  'dialect': 'postgres',
   'storage': ':memory:',
 });
-
-console.log(config.database);
