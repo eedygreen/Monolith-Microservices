@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: reverseproxy
-  name: reverseproxy-svc
+  name: reverseproxy
 spec:
   ports:
   - name: "http"
@@ -11,4 +11,4 @@ spec:
     targetPort: 8080
   selector:
     app: reverseproxy
-    type: LoadBalancer
+  type: LoadBalancer
