@@ -26,22 +26,4 @@ spec:
           limits:
             memory: 2048Mi
             cpu: 500m
-        env:
-          - name: POSTGRES_USERNAME 
-            value: udagrameedydev2
-          - name: POSTGRES_PASSWORD
-            value: udagrameedydev2
-          - name: POSTGRES_HOST
-            value: udagrameedydev2.cc3cvlw4gdcp.us-east-1.rds.amazonaws.com
-          - name: POSTGRES_DB
-            value: udagrameedydev2
-          - name: AWS_BUCKET
-            value: udagram-eedy-dev
-          - name: AWS_REGION
-            value: us-east-1
-          - name: AWS_PROFILE
-            value: udagram-dev
-          - name: JWT_SECRET
-            value: khkjsaogq
-          - name: URL
-            value: http://localhost:8100
+        
