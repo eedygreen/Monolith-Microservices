@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: backend-api-ingress
+  namespace: default
+  annotations:
+    # use nginx-ingress (needed if 2+ ingress controllers)
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    # route by virtualhost - externaldns registers this record
+    - host: my.udagram.com
+      http:
+        paths:
+        - backend:
+            serviceName: udagram-backend-feed-api
+            # connect to service using http port
+            servicePort: 8080
+          # default path put here explicitly for illustrative purposes
+          path: /api/v0/feed
+        - backend:
+            serviceName: udagram-backend-users-api
+            servicePort: 8080
+          path: /api/v0/users
