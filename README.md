@@ -1,4 +1,4 @@
-# README.md https://travis-ci.com/eedygreen/Monlith-Microservices.svg?branch=dev
+# README.md
 
 # REFACTORING OF MONOLITH TO MICROSERVICES  ****
 
@@ -151,7 +151,7 @@ data:
 
     - **Reverse proxy to direct requests to the appropriate backend**
 
-    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/reverseproxy.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/reverseproxy.png)
+    ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/loadbalancers.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/loadbalancers.png)
 
     Fig 2.3: Reverse Proxy
 
@@ -204,7 +204,7 @@ data:
 
         ### Debugging, Monitoring, and Logging
 
-        ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_metric.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_metric.png)
+        ![README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_log_metrics.png](README%20md%203a1ad6a1fb0e4815b2aa8c2ebff2bcbe/backend_log_metrics.png)
 
         Fig 2.7: Debugging DB Connection Request
 

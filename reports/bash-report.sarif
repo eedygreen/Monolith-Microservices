@@ -1,0 +1,212 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Shell Script Analysis",
+          "rules": [
+            {
+              "id": "1036",
+              "help": {
+                "text": "'(' is invalid here. Did you forget to escape it?.",
+                "markdown": "'(' is invalid here. Did you forget to escape it?."
+              },
+              "name": "",
+              "properties": {
+                "tags": [
+                  "Scan"
+                ],
+                "precision": "high"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "fullDescription": {
+                "text": "'(' is invalid here. Did you forget to escape it?."
+              },
+              "helpUri": "https://github.com/koalaman/shellcheck/wiki/SC1036",
+              "shortDescription": {
+                "text": "'(' is invalid here"
+              }
+            },
+            {
+              "id": "1088",
+              "help": {
+                "text": "Parsing stopped here. Invalid use of parentheses?.",
+                "markdown": "Parsing stopped here. Invalid use of parentheses?."
+              },
+              "name": "",
+              "properties": {
+                "tags": [
+                  "Scan"
+                ],
+                "precision": "high"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "fullDescription": {
+                "text": "Parsing stopped here. Invalid use of parentheses?."
+              },
+              "helpUri": "https://github.com/koalaman/shellcheck/wiki/SC1088",
+              "shortDescription": {
+                "text": "Parsing stopped here"
+              }
+            }
+          ],
+          "version": "1.0.0-scan",
+          "fullName": "Shell Script Analysis"
+        }
+      },
+      "conversion": {
+        "tool": {
+          "driver": {
+            "name": "@ShiftLeft/sast-scan"
+          }
+        },
+        "invocation": {
+          "arguments": [
+            "-a",
+            "--shell=bash",
+            "-f",
+            "json",
+            "-S",
+            "error",
+            "--color=never",
+            "/app/.set_env.sh",
+            "/app/udagram-frontend/udagram_tests/git_test.sh"
+          ],
+          "executionSuccessful": true,
+          "commandLine": "-a --shell=bash -f json -S error --color=never /app/.set_env.sh /app/udagram-frontend/udagram_tests/git_test.sh",
+          "endTimeUtc": "2021-05-04T04:35:59Z",
+          "workingDirectory": {
+            "uri": "file:///home/eedy/Documents/Monlith-Microservices"
+          }
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "endTimeUtc": "2021-05-04T04:35:59Z",
+          "workingDirectory": {
+            "uri": "file:///home/eedy/Documents/Monlith-Microservices"
+          }
+        }
+      ],
+      "properties": {
+        "metrics": {
+          "total": 2,
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2
+        }
+      },
+      "results": [
+        {
+          "message": {
+            "markdown": "",
+            "text": "'(' is invalid here. Did you forget to escape it?."
+          },
+          "level": "note",
+          "locations": [
+            {
+              "physicalLocation": {
+                "region": {
+                  "snippet": {
+                    "text": "verify cannot push to staging or master (protected branches)\n"
+                  },
+                  "startLine": 4
+                },
+                "artifactLocation": {
+                  "uri": "file:///home/eedy/Documents/Monlith-Microservices/udagram-frontend/udagram_tests/git_test.sh"
+                },
+                "contextRegion": {
+                  "snippet": {
+                    "text": "verify working on feature branch or similar\nverify cannot push to staging or master (protected branches)\n"
+                  },
+                  "endLine": 4,
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_confidence": "MEDIUM",
+            "issue_severity": "LOW",
+            "issue_tags": {}
+          },
+          "baselineState": "new",
+          "partialFingerprints": {
+            "scanPrimaryLocationHash": "b6ff869cdbccefbd",
+            "scanFileHash": "1c1be7907d02cc25"
+          },
+          "ruleId": "1036",
+          "ruleIndex": 0
+        },
+        {
+          "message": {
+            "markdown": "",
+            "text": "Parsing stopped here. Invalid use of parentheses?."
+          },
+          "level": "note",
+          "locations": [
+            {
+              "physicalLocation": {
+                "region": {
+                  "snippet": {
+                    "text": "verify cannot push to staging or master (protected branches)\n"
+                  },
+                  "startLine": 4
+                },
+                "artifactLocation": {
+                  "uri": "file:///home/eedy/Documents/Monlith-Microservices/udagram-frontend/udagram_tests/git_test.sh"
+                },
+                "contextRegion": {
+                  "snippet": {
+                    "text": "verify working on feature branch or similar\nverify cannot push to staging or master (protected branches)\n"
+                  },
+                  "endLine": 4,
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_confidence": "MEDIUM",
+            "issue_severity": "LOW",
+            "issue_tags": {}
+          },
+          "baselineState": "new",
+          "partialFingerprints": {
+            "scanPrimaryLocationHash": "b6ff869cdbccefbd",
+            "scanFileHash": "1c1be7907d02cc25"
+          },
+          "ruleId": "1088",
+          "ruleIndex": 1
+        }
+      ],
+      "automationDetails": {
+        "description": {
+          "text": "Static Analysis Security Test results using @ShiftLeft/sast-scan"
+        },
+        "guid": "b9ce9b9c-5b56-4254-a791-9a26ef8fbf10"
+      },
+      "versionControlProvenance": [
+        {
+          "branch": "dev",
+          "repositoryUri": "https://github.com/eedygreen/Monlith-Microservices",
+          "revisionId": "91bd94d6a18b6566411eb788ab08dafe6aab86f0"
+        }
+      ]
+    }
+  ],
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "inlineExternalProperties": [
+    {
+      "guid": "b9ce9b9c-5b56-4254-a791-9a26ef8fbf10",
+      "runGuid": "5072c727-0aaf-4c48-ae8f-371c5b05f369"
+    }
+  ]
+}

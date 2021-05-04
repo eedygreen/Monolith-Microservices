@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: udagram-backend-feed-api
   labels:
-    run: udagram-backend-feed-api
+    service: udagram-backend-feed-api
 spec:
   ports:
+  - name: http
   - port: 8080
-    protocol: TCP
+    targetPort: 8080
   selector:
-    run: udagram-backend-feed-api
+    app: udagram-backend-feed-api

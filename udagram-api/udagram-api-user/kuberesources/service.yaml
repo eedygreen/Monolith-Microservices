@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: udagram-backend-users-api
   labels:
-    run: udagram-backend-users-api
+    service: udagram-backend-users-api
 spec:
   ports:
-  - port: 8080
-    protocol: TCP
+  - name: http
+    port: 8080
+    targetPort: 8080
   selector:
-    run: udagram-backend-users-api
+    app: udagram-backend-users-api
+  type: ClusterIP

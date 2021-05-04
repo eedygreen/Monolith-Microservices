@@ -26,4 +26,22 @@ spec:
           limits:
             memory: 2048Mi
             cpu: 500m
-        
+        envFrom:
+         - secretKeyRef:
+               name: env-secret
+          - configMapRef:
+               name: env-variable
+        volumeMounts:
+          - name: configmap-volume
+            mountPath: /etc/configmap-volume
+            readOnly: true
+          - name: secret-volume
+            mountPath: /etc/secret-volume
+            readOnly: true
+      volumes:
+        - name: configmap-volume
+          configMap:
+            name: env-variable
+        - name: secret-volume
+          secret:
+            secretName: env-secret
