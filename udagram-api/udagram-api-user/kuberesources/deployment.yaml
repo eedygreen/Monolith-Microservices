@@ -27,10 +27,10 @@ spec:
             memory: 2048Mi
             cpu: 500m
         envFrom:
-        - secretRef:
-            name: env-secret
-        - configMapRef:
-            name: env-variable
+         - secretKeyRef:
+               name: env-secret
+          - configMapRef:
+               name: env-variable
         volumeMounts:
           - name: configmap-volume
             mountPath: /etc/configmap-volume
